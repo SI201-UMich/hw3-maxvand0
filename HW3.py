@@ -1,6 +1,6 @@
-# Name:
-# Student ID:
-# Email:
+# Name: Max VanDoren
+# Student ID: 
+# Email: maxvand@umich.edu
 # Who or what you worked with on this homework (including generative AI like ChatGPT):
 # If you worked with generative AI also add a statement for how you used it.
 # e.g.:
@@ -33,7 +33,10 @@ class CouponDispenser:
             coupon_cards (list[str]): list of possible coupons users can receive.
         """
         # TODO: Implement per instructions
-        pass
+
+        self.coupon_cards = coupon_cards
+        customer_roster = []
+        issued_indices = []
 
     def __str__(self):
         """
