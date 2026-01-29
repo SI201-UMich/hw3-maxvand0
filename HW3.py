@@ -109,29 +109,35 @@ class CouponDispenser:
 
         round_number = 1
 
-        while 1 > 0:
+        while True:
             user_input = input(f"Round {round_number} - Enter a name (or a comma-separated list), or type 'show' or 'exit': ")
             user_input = user_input.strip()
+
+            
 
             if user_input == 'exit':
                 print('Goodbye!')
                 break
-            
+
+            if not self.coupon_cards:
+                print('The box is empty.')
+
             elif user_input == 'show':
-                for i in range(len(self.customer_roster - 1)):
+                for i in range(len(self.customer_roster)):
                     print(f'{self.customer_roster[i]}: {self.coupon_cards[self.issued_indices[i]]}')
 
-            elif ',' in user_input:
+            else:
                 names = user_input.split(',')
 
                 for i in range(len(names)):
+                    names[i] = names[i].strip()
                     if not names[i]:
-                        names.remove(names[i])
+                        continue
+                    else:
+                        print(self.issue_coupon(names[i]))
 
-
-                
-
-                pass
+            round_number += 1
+                        
 
     def tally_distribution(self):
         """
