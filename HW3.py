@@ -1,7 +1,7 @@
 # Name: Max VanDoren
 # Student ID: 
 # Email: maxvand@umich.edu
-# Who or what you worked with on this homework (including generative AI like ChatGPT):
+# Who or what you worked with on this homework (including generative AI like ChatGPT): Myself and Github copilot to help me figure out bugs in accordance with my contract.
 # If you worked with generative AI also add a statement for how you used it.
 # e.g.:
 # Asked ChatGPT hints for debugging and suggesting the general structure of the code
@@ -38,6 +38,7 @@ class CouponDispenser:
         self.customer_roster = []
         self.issued_indices = []
 
+
     def __str__(self):
         """
         Return a single string with all coupons in coupon_cards joined by pipes ('|').
@@ -56,9 +57,7 @@ class CouponDispenser:
         
         else:
             return msg
-            
-
-        pass
+        
 
     def issue_coupon(self, name):
         """
@@ -75,6 +74,20 @@ class CouponDispenser:
             str: message as described above
         """
         # TODO: Implement per instructions
+        
+        if not self.coupon_cards:
+            return "The box is empty."
+
+        if name in self.customer_roster:
+            for i in range(len(self.customer_roster)):
+                if name == self.customer_roster[i]:
+                    return f"That name already has a coupon: {self.coupon_cards[self.issued_indices[i]]}"
+        
+        else:
+            random_coupon = random.randint(0, len(self.coupon_cards) - 1)
+            self.customer_roster.append(name)
+            self.issued_indices.append(random_coupon)
+            return self.coupon_cards[random_coupon]
         pass
 
     def distribute_session(self):
